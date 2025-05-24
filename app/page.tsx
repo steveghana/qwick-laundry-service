@@ -1,103 +1,339 @@
+"use client";
+
 import Image from "next/image";
+import { FaWhatsapp, FaCheck, FaTshirt, FaTruck } from "react-icons/fa";
+import { MdDryCleaning, MdLocalLaundryService, MdIron } from "react-icons/md";
+import { motion } from "framer-motion";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const bounce = {
+  initial: { y: -20, opacity: 0 },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 20,
+    },
+  },
+};
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-primary/20 via-primary/10 to-white">
+        <motion.div
+          className="container-custom text-center z-10 px-4"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h1
+            className="text-4xl md:text-6xl font-bold mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
+          >
+            Fast. Clean. Reliable.
+          </motion.h1>
+          <motion.p
+            className="text-xl md:text-2xl mb-8 text-gray-700"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            Laundry made simple with Qwik.
+          </motion.p>
+          <motion.a
+            href="https://wa.me/2335XXXXXXXXX?text=Hi%20Qwik%20Laundry!%20I'd%20like%20to%20place%20an%20order."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex items-center gap-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FaWhatsapp className="text-xl" />
+            Order Now on WhatsApp
+          </motion.a>
+        </motion.div>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Motto Section */}
+      <section className="section-padding bg-gray-100">
+        <motion.div
+          className="container-custom text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-4"
+            variants={bounce}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Your Time Matters
+          </motion.h2>
+          <motion.p
+            className="text-xl text-gray-700"
+            variants={fadeInUp}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
           >
-            Read our docs
-          </a>
+            Let Qwik Laundry Handle the Dirty Work.
+          </motion.p>
+        </motion.div>
+      </section>
+
+      {/* Services Section */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <motion.h2
+            className="text-3xl font-bold text-center mb-12"
+            variants={bounce}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            Our Services
+          </motion.h2>
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                variants={fadeInUp}
+                whileHover={{ y: -5 }}
+              >
+                <motion.div
+                  className="text-4xl text-primary mb-4"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                >
+                  {service.icon}
+                </motion.div>
+                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <p className="text-primary font-semibold">{service.price}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Price List Section */}
+      <section className="section-padding bg-gray-100">
+        <div className="container-custom">
+          <motion.h2
+            className="text-3xl font-bold text-center mb-12"
+            variants={bounce}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            Price List
+          </motion.h2>
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {prices.map((item, index) => (
+              <motion.div
+                key={item.name}
+                className="bg-white p-6 rounded-xl shadow-lg"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.05 }}
+              >
+                <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
+                <p className="text-primary font-bold">₵{item.price}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <motion.h2
+            className="text-3xl font-bold text-center mb-12"
+            variants={bounce}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            Why Choose Us
+          </motion.h2>
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature}
+                className="flex items-center gap-4"
+                variants={fadeInUp}
+                whileHover={{ x: 10 }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <FaCheck className="text-primary text-xl" />
+                </motion.div>
+                <p className="text-lg">{feature}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container-custom">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div variants={fadeInUp}>
+              <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+              <p>Nkawkaw, Ghana</p>
+              <p>Phone: +233 5X XXX XXXX</p>
+              <p>Email: info@qwiklaundry.com</p>
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <h3 className="text-xl font-bold mb-4">Hours</h3>
+              <p>Monday - Friday: 7:00 AM - 8:00 PM</p>
+              <p>Saturday: 8:00 AM - 6:00 PM</p>
+              <p>Sunday: Closed</p>
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <h3 className="text-xl font-bold mb-4">Follow Us</h3>
+              <div className="flex gap-4">
+                <motion.a
+                  href="#"
+                  className="hover:text-primary transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  Instagram
+                </motion.a>
+                <motion.a
+                  href="#"
+                  className="hover:text-primary transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  Facebook
+                </motion.a>
+              </div>
+            </motion.div>
+          </motion.div>
+          <motion.div
+            className="text-center mt-8 pt-8 border-t border-gray-800"
+            variants={fadeInUp}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <p>Powered by Qwik Laundry & Cleaning Services</p>
+          </motion.div>
+        </div>
       </footer>
+
+      {/* WhatsApp Button */}
+      <motion.a
+        href="https://wa.me/2335XXXXXXXXX?text=Hi%20Qwik%20Laundry!%20I'd%20like%20to%20place%20an%20order."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whatsapp-button"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+      >
+        <FaWhatsapp className="text-xl" />
+        Order Now
+      </motion.a>
     </div>
   );
 }
+
+const services = [
+  {
+    title: "Wash & Fold",
+    description: "Professional washing and folding service for your clothes",
+    price: "From ₵5 per item",
+    icon: <MdLocalLaundryService />,
+  },
+  {
+    title: "Wash & Iron",
+    description: "Complete washing and ironing service for a crisp finish",
+    price: "From ₵8 per item",
+    icon: <MdIron />,
+  },
+  {
+    title: "Iron Only",
+    description: "Professional ironing service for your clothes",
+    price: "From ₵3 per item",
+    icon: <MdIron />,
+  },
+  {
+    title: "Duvet/Blanket Cleaning",
+    description: "Specialized cleaning for your duvets and blankets",
+    price: "From ₵20 per item",
+    icon: <MdDryCleaning />,
+  },
+  {
+    title: "Pick-Up & Delivery",
+    description: "Convenient pick-up and delivery service (Coming Soon)",
+    price: "Contact for pricing",
+    icon: <FaTruck />,
+  },
+];
+
+const prices = [
+  { name: "Shirts", price: "5" },
+  { name: "Trousers", price: "6" },
+  { name: "Bed sheets", price: "8" },
+  { name: "Suits", price: "15" },
+  { name: "Duvets", price: "20" },
+];
+
+const features = [
+  "Fast turnaround",
+  "High-quality machines (Bosch, Bruhm, TCL)",
+  "Affordable pricing",
+  "Professional care & same-day service",
+];
